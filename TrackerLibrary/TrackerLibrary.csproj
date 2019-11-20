@@ -45,6 +45,11 @@
   <ItemGroup>
     <Compile Include="MyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeamModel.cs" />
+    <Compile Include="PersonModel.cs" />
+    <Compile Include="TournamentModel.cs" />
+    <Compile Include="PrizeModel.cs" />
+    <Compile Include="MatchupModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>
