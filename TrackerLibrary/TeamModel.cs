@@ -2,6 +2,9 @@
 
 namespace TrackerLibrary
 {
+    /// <summary>
+    /// Represents one team.
+    /// </summary>
     public class TeamModel
     {
         /// <summary>

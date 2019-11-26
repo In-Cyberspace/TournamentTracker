@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 namespace TrackerLibrary
 {
+    /// <summary>
+    /// Represents one match in the tournament.
+    /// </summary>
     public class MatchupModel
     {
         /// <summary>

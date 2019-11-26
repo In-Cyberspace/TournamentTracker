@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 namespace TrackerLibrary
 {
+    /// <summary>
+    /// Represents one tournament.
+    /// </summary>
     public class TournamentModel
     {
         /// <summary>

@@ -1,6 +1,9 @@
 ﻿using System;
 namespace TrackerLibrary
 {
+    /// <summary>
+    /// Represents a person/team.
+    /// </summary>
     public class MatchupEntryModel
     {
         /// <summary>

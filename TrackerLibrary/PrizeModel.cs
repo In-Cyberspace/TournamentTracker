@@ -1,6 +1,9 @@
 ﻿using System;
 namespace TrackerLibrary
 {
+    /// <summary>
+    /// Represents one prize.
+    /// </summary>
     public class PrizeModel
     {
         /// <summary>
