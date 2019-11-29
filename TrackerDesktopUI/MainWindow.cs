@@ -1,26 +1,35 @@
 ﻿using System;
+using System.Reflection;
 using Gtk;
 
 public partial class MainWindow : Gtk.Window
 {
-    Gdk.Color winBgColour, lblColour;
+    Gdk.Color winBgColour, lblFgColour;
 
-    public MainWindow(string tvTitle, byte lblv1, byte lblv2, byte lblv3,
-        byte Bgv1, byte Bgv2, byte Bgv3) : base(Gtk.WindowType.Toplevel)
+    public MainWindow() : base(Gtk.WindowType.Toplevel)
     {
-        Build();
-        Title = tvTitle;
-        winBgColour = new Gdk.Color(Bgv1, Bgv2, Bgv3);
-        lblColour = new Gdk.Color(lblv1, lblv2, lblv3);
+        // Build();
+        SetDefaultSize(350, 400);
+        SetPosition(WindowPosition.Center);
+
+        winBgColour = new Gdk.Color(36, 36, 36);
+    //    lblFgColour = new Gdk.Color(255, 255, 255);
+
+        Title = "Dashboard";
+        
+    //    lblDashboardMain.Text = "Tournament Dashboard";
+    //    lblLoadTournament.Text = "Load Existing Tournament";
+    //    btnLoadTournament.Label = "Load Tournament";
+    //    btnCreateTournament.Label = "Create Tournament";
+
         ModifyBg(StateType.Normal, winBgColour);
-        lblTournamentViewerMain.ModifyFg(StateType.Normal, lblColour);
-        lblTournamentViewerRound.ModifyFg(StateType.Normal, lblColour);
-        lblTournamentName.ModifyFg(StateType.Normal, lblColour);
-        lblTournamentName.Visible = false;
-        eventbox5.ModifyBg(StateType.Normal, winBgColour);
-        eventbox6.ModifyBg(StateType.Normal, winBgColour);
-        // lblTournamentViewerMain.Colormap.AllocColor(ref lblColour, writeable:false,
-        //    best_match:true);
+        //    foreach (Widget widget in DashboardVbox1)
+        //    {
+        //        if (widget is Label)
+        //        {
+        //            widget.ModifyFg(StateType.Normal, lblFgColour);
+        //        }
+        //    }
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
