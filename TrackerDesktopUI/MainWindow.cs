@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using Gtk;
+﻿using Gtk;
 
 public partial class MainWindow : Gtk.Window
 {

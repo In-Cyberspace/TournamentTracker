@@ -1,5 +1,4 @@
-﻿using System;
-namespace TrackerLibrary
+﻿namespace TrackerLibrary
 {
     /// <summary>
     /// Represents a person/team.

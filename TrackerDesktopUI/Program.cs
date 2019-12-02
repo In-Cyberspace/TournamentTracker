@@ -1,5 +1,4 @@
-﻿using System;
-using Gtk;
+﻿using Gtk;
 
 namespace TrackerDesktopUI
 {
@@ -10,7 +9,7 @@ namespace TrackerDesktopUI
             Application.Init();
             MainWindow win = new MainWindow();
             TournamentViewer TVwin = new TournamentViewer();
-            win.Show();
+            // win.Show();
             TVwin.Show();
             Application.Run();
         }

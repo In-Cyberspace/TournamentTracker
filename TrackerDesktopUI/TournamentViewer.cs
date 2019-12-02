@@ -1,85 +1,98 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using Gtk;
 
 namespace TrackerDesktopUI
 {
     public partial class TournamentViewer : Gtk.Window
     {
-        //Gdk.Color winBgColour, lblFgColour;
-        
-        public TournamentViewer() :
-                base(Gtk.WindowType.Toplevel)
+        public TournamentViewer() : base(Gtk.WindowType.Toplevel)
         {
-            // Colours and containers
-            Gdk.Color winBgColour = new Gdk.Color(36, 36, 36);
-            Gdk.Color lblFgColour = new Gdk.Color(255, 255, 255);
-
-            Fixed leftFix = new Fixed();
-            Fixed rightFix = new Fixed();
+            // Declaring and initializing containers
+            Fixed @fixed = new Fixed();
 
             HBox hBox = new HBox(false, 0);
 
-            //VBox leftBox = new VBox(false, 0);
-            //VBox rightBox = new VBox(false, 0);
-
-            // Checkbox, combobox, entries, listbox, score buttons
+            // Declaring and initializing widgets
             // (maybe create custom widgets for some stuff)
             Button btnScore = new Button("Score");
-            CheckButton roundsCheck = new CheckButton("Unplayed Only");
-            ComboBox cmbRounds = new ComboBox();
+
+            CheckButton cbtnRounds = new CheckButton("Unplayed Only");
+
+            ComboBox cmbRounds = new ComboBox(new string[] {"Arch",
+                "macOS", "Manjaro"});                                               // place holder for rounds dropdow
+
             Entry entryScoreOne = new Entry();
             Entry entryScoreTwo = new Entry();
 
-            // Labels
             Label lblViewerMain = new Label("Tournament:");
-            lblViewerMain.ModifyFg(StateType.Normal, lblFgColour);
-
             Label lblViewerRound = new Label("Round");
-            lblViewerRound.ModifyFg(StateType.Normal, lblFgColour);
-
             Label lblViewerScoreOne = new Label("Score");
-            lblViewerScoreOne.ModifyFg(StateType.Normal, lblFgColour);
-
             Label lblViewerScoreTwo = new Label("Score");
-            lblViewerScoreTwo.ModifyFg(StateType.Normal, lblFgColour);
-
             Label lblViewerTournamentName = new Label("<none>");
-            lblViewerTournamentName.ModifyFg(StateType.Normal, lblFgColour);
-            // lblTournamentName.Visible = false;
-
             Label lblViewerTeamOne = new Label("Team One");
-            lblViewerTeamOne.ModifyFg(StateType.Normal, lblFgColour);
-
             Label lblViewerTeamTwo = new Label("Team Two");
-            lblViewerTeamTwo.ModifyFg(StateType.Normal, lblFgColour);
-
             Label lblViewerVersus = new Label("VS");
-            lblViewerVersus.ModifyFg(StateType.Normal, lblFgColour);
+
+            ListStore Rounds = TempRoundsList();
+
+            TreeView treeView = new TreeView(Rounds);
+            treeView.RulesHint = true;
+
+            ScrolledWindow roundsList = new ScrolledWindow();
+            roundsList.ShadowType = ShadowType.EtchedIn;
+            roundsList.SetPolicy(PolicyType.Automatic, PolicyType.Automatic);
+            roundsList.Add(treeView);
+
+            // Populating the left half of the fixed container
+            // (midpoint is 275)
+            @fixed.Put(lblViewerMain, 10, 10);
+            @fixed.Put(lblViewerTournamentName, 85, 10);
+            @fixed.Put(lblViewerRound, 10, 45);
+            @fixed.Put(cmbRounds, 50, 35);
+            @fixed.Put(cbtnRounds, 50, 70);
+
+            @fixed.Put(roundsList, 10, 100);
+
+            // Populating the right half of the fixed container
+            // (midpoint is 275)
+            @fixed.Put(lblViewerTeamOne, 290, 200);
+            @fixed.Put(lblViewerScoreOne, 290, 240);
+            @fixed.Put(entryScoreOne, 325, 235);
+
+            @fixed.Put(lblViewerVersus, 290, 335);
+            @fixed.Put(btnScore, 325, 328);
+
+            @fixed.Put(lblViewerTeamTwo, 290, 400);
+            @fixed.Put(lblViewerScoreTwo, 290, 440);
+            @fixed.Put(entryScoreTwo, 325, 435);
+
+            // Assigning widget colours
+            Gdk.Color lblFgColour = new Gdk.Color(255, 255, 255);
+
+            foreach (Widget item in @fixed)
+            {
+                if (item is Label)
+                {
+                    item.ModifyFg(StateType.Normal, lblFgColour);
+                }
+            }
+            foreach (Widget item in cbtnRounds)
+            {
+                if (item is Label)
+                {
+                    item.ModifyFg(StateType.Normal, lblFgColour);
+                    item.ModifyFg(StateType.Active, lblFgColour);
+                    item.ModifyFg(StateType.Prelight, lblFgColour);
+                }
+            }
 
             // Window setup
-            ModifyBg(StateType.Normal, winBgColour);
+            ModifyBg(StateType.Normal, new Gdk.Color(36, 36, 36));
             SetDefaultSize(550, 600);
             SetPosition(WindowPosition.Center);
             Title = "Tournament Viewer";
 
-            // Populating the left box
-            leftFix.Put(lblViewerMain, 5, 5);
-            leftFix.Put(lblViewerTournamentName, 80, 5);
-
-            // Populating the right box
-            rightFix.Put(lblViewerTeamOne, 15, 200);
-            rightFix.Put(lblViewerScoreOne, 15, 240);
-            rightFix.Put(entryScoreOne, 50, 235);
-
-            rightFix.Put(lblViewerVersus, 15, 335);
-            rightFix.Put(btnScore, 50, 330); //x 160
-
-            rightFix.Put(lblViewerTeamTwo, 15, 400);
-            rightFix.Put(lblViewerScoreTwo, 15, 440);
-            rightFix.Put(entryScoreTwo, 50, 435);
-
-            hBox.Add(leftFix);
-            hBox.Add(rightFix);
+            hBox.Add(@fixed);
 
             Add(hBox);
 
@@ -90,8 +103,30 @@ namespace TrackerDesktopUI
 
             //eventbox5.ModifyBg(StateType.Normal, winBgColour);
             //eventbox6.ModifyBg(StateType.Normal, winBgColour);
-            // lblTournamentViewerMain.Colormap.AllocColor(ref lblColour, writeable:false,
-            //    best_match:true);
+        }
+    }
+
+    public partial class TournamentViewer : Gtk.Window
+    {
+        /// <summary>
+        /// Temporary place holder for the rounds list store.
+        /// </summary>
+        protected class TempRounds
+        {
+            public List<string> rounds = new List<string> { "Round 1",
+            "Round 2", "Round 3" };
+        }
+
+        public ListStore TempRoundsList()
+        {
+            ListStore store = new ListStore(typeof(string));
+
+            foreach (string item in new TempRounds().rounds)
+            {
+                store.AppendValues(item);
+            }
+
+            return store;
         }
     }
 }
