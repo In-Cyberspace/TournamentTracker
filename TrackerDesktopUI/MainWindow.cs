@@ -4,7 +4,8 @@ public partial class MainWindow : Gtk.Window
 {
     Gdk.Color winBgColour, lblFgColour;
 
-    public MainWindow() : base(Gtk.WindowType.Toplevel)
+    public MainWindow() :
+            base(Gtk.WindowType.Toplevel)
     {
         // Build();
         SetDefaultSize(350, 400);

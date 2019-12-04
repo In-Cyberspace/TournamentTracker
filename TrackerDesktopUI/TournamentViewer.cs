@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using Gtk;
+﻿using Gtk;
 
 namespace TrackerDesktopUI
 {
     public partial class TournamentViewer : Gtk.Window
     {
-        public TournamentViewer() : base(Gtk.WindowType.Toplevel)
+        public TournamentViewer() :
+                base(Gtk.WindowType.Toplevel)
         {
             // Declaring and initializing containers
             Fixed @fixed = new Fixed();
@@ -13,35 +13,42 @@ namespace TrackerDesktopUI
             HBox hBox = new HBox(false, 0);
 
             // Declaring and initializing widgets
-            // (maybe create custom widgets for some stuff)
             Button btnScore = new Button("Score");
 
             CheckButton cbtnRounds = new CheckButton("Unplayed Only");
 
-            ComboBox cmbRounds = new ComboBox(new string[] {"Arch",
+            ComboBoxEntry cmbRounds = new ComboBoxEntry(new string[] {"Arch",
                 "macOS", "Manjaro"});                                               // place holder for rounds dropdow
 
             Entry entryScoreOne = new Entry();
-            Entry entryScoreTwo = new Entry();
+            Entry entryViewerScoreTwo = new Entry();
 
             Label lblViewerMain = new Label("Tournament:");
             Label lblViewerRound = new Label("Round");
             Label lblViewerScoreOne = new Label("Score");
             Label lblViewerScoreTwo = new Label("Score");
             Label lblViewerTournamentName = new Label("<none>");
-            Label lblViewerTeamOne = new Label("Team One");
-            Label lblViewerTeamTwo = new Label("Team Two");
+            Label lblViewerTeamOne = new Label("<team one>");
+            Label lblViewerTeamTwo = new Label("<team two>");
             Label lblViewerVersus = new Label("VS");
 
-            ListStore Rounds = TempRoundsList();
+            ListStore Rounds = GeneralMethods.CreateList(new string[]
+            { "Round 1", "Round 2", "Round 3", "Round 4", "Round 5" });
 
-            TreeView treeView = new TreeView(Rounds);
-            treeView.RulesHint = true;
+            TreeView treeView = new TreeView(Rounds)
+            {
+                RulesHint = true
+            };
 
-            ScrolledWindow roundsList = new ScrolledWindow();
-            roundsList.ShadowType = ShadowType.EtchedIn;
+            ScrolledWindow roundsList = new ScrolledWindow
+            {
+                ShadowType = ShadowType.EtchedIn
+            };
+            roundsList.SetSizeRequest(250, 400);
             roundsList.SetPolicy(PolicyType.Automatic, PolicyType.Automatic);
             roundsList.Add(treeView);
+
+            GeneralMethods.AddColumns("Round matchups", treeView); // AddColumns(treeView);
 
             // Populating the left half of the fixed container
             // (midpoint is 275)
@@ -64,27 +71,12 @@ namespace TrackerDesktopUI
 
             @fixed.Put(lblViewerTeamTwo, 290, 400);
             @fixed.Put(lblViewerScoreTwo, 290, 440);
-            @fixed.Put(entryScoreTwo, 325, 435);
+            @fixed.Put(entryViewerScoreTwo, 325, 435);
 
             // Assigning widget colours
-            Gdk.Color lblFgColour = new Gdk.Color(255, 255, 255);
-
-            foreach (Widget item in @fixed)
-            {
-                if (item is Label)
-                {
-                    item.ModifyFg(StateType.Normal, lblFgColour);
-                }
-            }
-            foreach (Widget item in cbtnRounds)
-            {
-                if (item is Label)
-                {
-                    item.ModifyFg(StateType.Normal, lblFgColour);
-                    item.ModifyFg(StateType.Active, lblFgColour);
-                    item.ModifyFg(StateType.Prelight, lblFgColour);
-                }
-            }
+            GeneralMethods.LabelColours(cbtnRounds,
+                new byte[] { 255, 255, 255 });
+            GeneralMethods.LabelColours(@fixed, new byte[] { 255, 255, 255 });
 
             // Window setup
             ModifyBg(StateType.Normal, new Gdk.Color(36, 36, 36));
@@ -103,30 +95,6 @@ namespace TrackerDesktopUI
 
             //eventbox5.ModifyBg(StateType.Normal, winBgColour);
             //eventbox6.ModifyBg(StateType.Normal, winBgColour);
-        }
-    }
-
-    public partial class TournamentViewer : Gtk.Window
-    {
-        /// <summary>
-        /// Temporary place holder for the rounds list store.
-        /// </summary>
-        protected class TempRounds
-        {
-            public List<string> rounds = new List<string> { "Round 1",
-            "Round 2", "Round 3" };
-        }
-
-        public ListStore TempRoundsList()
-        {
-            ListStore store = new ListStore(typeof(string));
-
-            foreach (string item in new TempRounds().rounds)
-            {
-                store.AppendValues(item);
-            }
-
-            return store;
         }
     }
 }
