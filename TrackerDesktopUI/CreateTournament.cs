@@ -15,13 +15,14 @@ namespace TrackerDesktopUI
 
             // Widgets
             Button btnCreateAddTeam = new Button("Add Team");
+            Button btnCreateNewTeam = new Button("Create New");
             Button btnCreatePrize = new Button("Create Prize");
             Button btnCreateDeleteTeams = new Button("Delete Selected");
             Button btnCreateDeletePrizes = new Button("Delete Selected");
             Button btnCreateMain = new Button("Create Tournament");
 
-            ComboBoxEntry cmbCreateTeam = new ComboBoxEntry(new string[]
-            { "One", "Two", "Three" });
+            ComboBoxEntry cmbCreateTeam = new ComboBoxEntry(new string[] { "Te"
+                + "am 1", "Team 2", "etc..." });
 
             Entry entryCreateName = new Entry();
             Entry entryCreateFee = new Entry();
@@ -30,33 +31,52 @@ namespace TrackerDesktopUI
             Label lblCreateName = new Label("Tournament Name");
             Label lblCreateFee = new Label("Entry Fee");
             Label lblCreateSelectTeam = new Label("Select Team");
-            Label lblCreateTeamPlayers = new Label("Team/Players");
 
-            //ListStore storeCreateTeams = 
-        }
-    }
+            ScrolledWindow PrizesList = GeneralMethods.CreateListView("Prizes",
+                new string[] { "Prize 1", "Prize 2", "etc..." });
+            PrizesList.SetSizeRequest(300, 200);
+            ScrolledWindow TeamsList = GeneralMethods.CreateListView("Teams/" +
+                "Players", new string[] {"Team 1", "Team 2", "etc..."});
+            TeamsList.SetSizeRequest(300, 300);
 
-    public partial class CreateTournament : Gtk.Window
-    {
-        protected ListStore TeamsList()
-        {
-            ListStore store = new ListStore(typeof(string));
+            // Populating the top half of the fixed container
+            @fixed.Put(lblCreateMain, 10, 5);
 
-            foreach (string item in new List<string>() {"Team/Player 1",
-            "Team/Player 2", "Team/Player 3"})
-            {
-                store.AppendValues(item);
-            }
+            @fixed.Put(btnCreateMain, 200, 50);
 
-            return store;
-        }
+            @fixed.Put(TeamsList, 10, 100);
 
-        protected void AddColumns(TreeView treeView)
-        {
-            CellRendererText rendererText = new CellRendererText();
-            TreeViewColumn column = new TreeViewColumn("Team/Player",
-                rendererText, "text", 0);
-            treeView.AppendColumn(column);
+            @fixed.Put(lblCreateName, 320, 110);
+            @fixed.Put(entryCreateName, 320, 130);
+
+            @fixed.Put(lblCreateFee, 320, 190);
+            @fixed.Put(entryCreateFee, 320, 210);
+
+            @fixed.Put(lblCreateSelectTeam, 320, 270);
+            @fixed.Put(cmbCreateTeam, 320, 290);
+            @fixed.Put(btnCreateAddTeam, 320, 330);
+            @fixed.Put(btnCreateNewTeam, 400, 330);
+            @fixed.Put(btnCreateDeleteTeams, 320, 370);
+
+            // Populating the bottom half of the fixed container
+            @fixed.Put(PrizesList, 10, 450);
+
+            @fixed.Put(btnCreatePrize, 320, 580);
+            @fixed.Put(btnCreateDeletePrizes, 320, 620);
+
+            // Assigning widget colours and fonts
+            GeneralMethods.LabelColoursFonts(@fixed, new byte[] { 255, 255,
+                255}, new Label[] { lblCreateMain });
+
+            // Window setup
+            ModifyBg(StateType.Normal, new Gdk.Color(36, 36, 36));
+            SetDefaultSize(600, 700);
+            SetPosition(WindowPosition.Center);
+            Title = "Tournament Creator";
+
+            hBox.Add(@fixed);
+
+            Add(hBox);
         }
     }
 }

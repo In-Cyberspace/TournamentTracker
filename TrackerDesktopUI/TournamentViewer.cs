@@ -32,30 +32,17 @@ namespace TrackerDesktopUI
             Label lblViewerTeamTwo = new Label("<team two>");
             Label lblViewerVersus = new Label("VS");
 
-            ListStore Rounds = GeneralMethods.CreateList(new string[]
-            { "Round 1", "Round 2", "Round 3", "Round 4", "Round 5" });
-
-            TreeView treeView = new TreeView(Rounds)
-            {
-                RulesHint = true
-            };
-
-            ScrolledWindow roundsList = new ScrolledWindow
-            {
-                ShadowType = ShadowType.EtchedIn
-            };
+            ScrolledWindow roundsList = GeneralMethods.CreateListView("Round" +
+                " matchups", new string[] { "Round 1", "Round 2", "Round 3",
+                    "Round 4", "etc..." });                                         // place holder
             roundsList.SetSizeRequest(250, 400);
-            roundsList.SetPolicy(PolicyType.Automatic, PolicyType.Automatic);
-            roundsList.Add(treeView);
-
-            GeneralMethods.AddColumns("Round matchups", treeView); // AddColumns(treeView);
 
             // Populating the left half of the fixed container
             // (midpoint is 275)
             @fixed.Put(lblViewerMain, 10, 10);
-            @fixed.Put(lblViewerTournamentName, 85, 10);
+            @fixed.Put(lblViewerTournamentName, 145, 10);
             @fixed.Put(lblViewerRound, 10, 45);
-            @fixed.Put(cmbRounds, 50, 35);
+            @fixed.Put(cmbRounds, 55, 40);
             @fixed.Put(cbtnRounds, 50, 70);
 
             @fixed.Put(roundsList, 10, 100);
@@ -64,19 +51,20 @@ namespace TrackerDesktopUI
             // (midpoint is 275)
             @fixed.Put(lblViewerTeamOne, 290, 200);
             @fixed.Put(lblViewerScoreOne, 290, 240);
-            @fixed.Put(entryScoreOne, 325, 235);
+            @fixed.Put(entryScoreOne, 335, 235);
 
             @fixed.Put(lblViewerVersus, 290, 335);
             @fixed.Put(btnScore, 325, 328);
 
             @fixed.Put(lblViewerTeamTwo, 290, 400);
             @fixed.Put(lblViewerScoreTwo, 290, 440);
-            @fixed.Put(entryViewerScoreTwo, 325, 435);
+            @fixed.Put(entryViewerScoreTwo, 335, 435);
 
-            // Assigning widget colours
-            GeneralMethods.LabelColours(cbtnRounds,
-                new byte[] { 255, 255, 255 });
-            GeneralMethods.LabelColours(@fixed, new byte[] { 255, 255, 255 });
+            // Assigning widget colours and fonts
+            GeneralMethods.LabelColoursFonts(cbtnRounds,
+                new byte[] { 255, 255, 255 }, new Label[] {});
+            GeneralMethods.LabelColoursFonts(@fixed, new byte[] { 255, 255,
+                255 }, new Label[] { lblViewerTournamentName, lblViewerMain });
 
             // Window setup
             ModifyBg(StateType.Normal, new Gdk.Color(36, 36, 36));
@@ -88,9 +76,9 @@ namespace TrackerDesktopUI
 
             Add(hBox);
 
-            ShowAll();
+            //ShowAll();
             // -----
-            
+
             // Build();
 
             //eventbox5.ModifyBg(StateType.Normal, winBgColour);

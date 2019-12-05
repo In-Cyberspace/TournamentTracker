@@ -62,6 +62,8 @@
     <Compile Include="CreateTournament.cs" />
     <Compile Include="gtk-gui\TrackerDesktopUI.CreateTournament.cs" />
     <Compile Include="GeneralMethods.cs" />
+    <Compile Include="Window.cs" />
+    <Compile Include="gtk-gui\TrackerDesktopUI.Window.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
