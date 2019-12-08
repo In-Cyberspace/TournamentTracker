@@ -9,13 +9,12 @@ namespace TrackerDesktopUI
                 base(Gtk.WindowType.Toplevel)
         {
             // Containers
-            HBox hBox = new HBox(false, 0);
-
             Fixed @fixed = new Fixed();
+
+            HBox hBox = new HBox(false, 0);
 
             // Widgets
             Button btnCreateAddTeam = new Button("Add Team");
-            Button btnCreateNewTeam = new Button("Create New");
             Button btnCreatePrize = new Button("Create Prize");
             Button btnCreateDeleteTeams = new Button("Delete Selected");
             Button btnCreateDeletePrizes = new Button("Delete Selected");
@@ -25,7 +24,10 @@ namespace TrackerDesktopUI
                 + "am 1", "Team 2", "etc..." });
 
             Entry entryCreateName = new Entry();
-            Entry entryCreateFee = new Entry();
+            Entry entryCreateFee = new Entry("0");
+
+            EventBox clicklblCreateTeam =
+                GeneralMethods.ClickableLabel("create new");
 
             Label lblCreateMain = new Label("Create Tournament");
             Label lblCreateName = new Label("Tournament Name");
@@ -53,9 +55,9 @@ namespace TrackerDesktopUI
             @fixed.Put(entryCreateFee, 320, 210);
 
             @fixed.Put(lblCreateSelectTeam, 320, 270);
+            @fixed.Put(clicklblCreateTeam, 450, 270);
             @fixed.Put(cmbCreateTeam, 320, 290);
             @fixed.Put(btnCreateAddTeam, 320, 330);
-            @fixed.Put(btnCreateNewTeam, 400, 330);
             @fixed.Put(btnCreateDeleteTeams, 320, 370);
 
             // Populating the bottom half of the fixed container
@@ -65,8 +67,8 @@ namespace TrackerDesktopUI
             @fixed.Put(btnCreateDeletePrizes, 320, 620);
 
             // Assigning widget colours and fonts
-            GeneralMethods.LabelColoursFonts(@fixed, new byte[] { 255, 255,
-                255}, new Label[] { lblCreateMain });
+            GeneralMethods.LabelColoursFonts(@fixed,
+                new byte[] { 255, 255, 255}, new Label[] { lblCreateMain });
 
             // Window setup
             ModifyBg(StateType.Normal, new Gdk.Color(36, 36, 36));

@@ -10,9 +10,9 @@ namespace TrackerDesktopUI
             MainWindow win = new MainWindow();
             TournamentViewer TVwin = new TournamentViewer();
             CreateTournament CTwin = new CreateTournament();
-            // win.Show();
+            // win.ShowAll();
             CTwin.ShowAll();
-            // TVwin.Show();
+            // TVwin.ShowAll();
             Application.Run();
         }
     }

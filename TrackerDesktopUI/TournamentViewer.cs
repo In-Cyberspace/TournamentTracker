@@ -62,7 +62,7 @@ namespace TrackerDesktopUI
 
             // Assigning widget colours and fonts
             GeneralMethods.LabelColoursFonts(cbtnRounds,
-                new byte[] { 255, 255, 255 }, new Label[] {});
+                new byte[] { 255, 255, 255 });
             GeneralMethods.LabelColoursFonts(@fixed, new byte[] { 255, 255,
                 255 }, new Label[] { lblViewerTournamentName, lblViewerMain });
 
