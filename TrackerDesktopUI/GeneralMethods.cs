@@ -62,6 +62,9 @@ namespace TrackerDesktopUI
 
         internal static EventBox ClickableLabel(string lblTitle)
         {
+            Gdk.Color lblColour = new Gdk.Color(255, 255, 255);
+            Gdk.Color lblBgColor = new Gdk.Color(36, 36, 36);
+
             Pango.AttrList attr = new Pango.AttrList();
             attr.Insert(new Pango.AttrUnderline(Pango.Underline.Single));
             attr.Insert(new Pango.AttrFontDesc(
@@ -71,16 +74,16 @@ namespace TrackerDesktopUI
             {
                 Attributes = attr
             };
-            label.ModifyFg(StateType.Active, new Gdk.Color(255, 255, 255));
-            label.ModifyFg(StateType.Normal, new Gdk.Color(255, 255, 255));
-            label.ModifyFg(StateType.Prelight, new Gdk.Color(255, 255, 255));
+            label.ModifyFg(StateType.Active, lblColour);
+            label.ModifyFg(StateType.Normal, lblColour);
+            label.ModifyFg(StateType.Prelight, lblColour);
 
             EventBox eventBox = new EventBox
             {
                 label
             };
-            eventBox.ModifyBg(StateType.Active, new Gdk.Color(36, 36, 36));
-            eventBox.ModifyBg(StateType.Normal, new Gdk.Color(36, 36, 36));
+            eventBox.ModifyBg(StateType.Active, lblBgColor);
+            eventBox.ModifyBg(StateType.Normal, lblBgColor);
 
             return eventBox;
         }

@@ -31,9 +31,9 @@
       <placeholder />
     </child>
   </widget>
-  <widget class="Gtk.Window" id="TrackerDesktopUI.Window" design-size="400 300">
+  <widget class="Gtk.Window" id="TrackerDesktopUI.CreateTeam" design-size="400 300">
     <property name="MemberName" />
-    <property name="Title" translatable="yes">Window</property>
+    <property name="Title" translatable="yes">CreateTeam</property>
     <property name="WindowPosition">CenterOnParent</property>
     <child>
       <placeholder />
