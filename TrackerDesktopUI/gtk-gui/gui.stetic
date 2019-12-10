@@ -39,4 +39,12 @@
       <placeholder />
     </child>
   </widget>
+  <widget class="Gtk.Window" id="TrackerDesktopUI.CreatePrize" design-size="400 300">
+    <property name="MemberName" />
+    <property name="Title" translatable="yes">CreatePrize</property>
+    <property name="WindowPosition">CenterOnParent</property>
+    <child>
+      <placeholder />
+    </child>
+  </widget>
 </stetic-interface>

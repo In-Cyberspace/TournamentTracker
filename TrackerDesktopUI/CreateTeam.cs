@@ -1,5 +1,4 @@
 ﻿using Gtk;
-using System;
 
 namespace TrackerDesktopUI
 {
@@ -17,6 +16,7 @@ namespace TrackerDesktopUI
             Button btnTeamAddMember = new Button("Add Member");
             Button btnTeamCreateNewMember = new Button("Create Member");
             Button btnTeamCreateTeam = new Button("Create Team");
+            Button btnTeamDelete = new Button("Delete Selected");
 
             ComboBoxEntry cmbTeamSelectMember = new ComboBoxEntry(
                 new string[] { "Member 1", "Member 2", "etc..." });
@@ -50,7 +50,8 @@ namespace TrackerDesktopUI
             @fixed.Put(lblTeamSelectMember, 10, 110);
             @fixed.Put(cmbTeamSelectMember, 10, 130);
 
-            @fixed.Put(btnTeamAddMember, 50, 165);
+            @fixed.Put(btnTeamAddMember, 10, 165);
+            @fixed.Put(btnTeamDelete, 100, 165);
 
             @fixed.Put(lblTeamAddNewMember, 10, 220);
 
