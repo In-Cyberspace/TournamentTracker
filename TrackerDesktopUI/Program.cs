@@ -12,11 +12,11 @@ namespace TrackerDesktopUI
             CreateTournament CTwin = new CreateTournament();
             CreateTeam Teamwin = new CreateTeam();
             CreatePrize Prizewin = new CreatePrize();
-            // win.ShowAll();
+            win.ShowAll();
             // CTwin.ShowAll();
             // TVwin.ShowAll();
             // Teamwin.ShowAll();
-            Prizewin.ShowAll();
+            // Prizewin.ShowAll();
             Application.Run();
         }
     }

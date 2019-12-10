@@ -48,7 +48,7 @@ namespace TrackerDesktopUI
 
             // Assigning widget colora and fonts
             GeneralMethods.LabelColoursFonts(@fixed,
-                new byte[] { 255, 255, 255}, new Label[] { lblPrzeMain });
+                new byte[] { 255, 255, 255 }, new Label[] { lblPrzeMain });
 
             // Window setup
             ModifyBg(StateType.Normal, new Gdk.Color(36, 36, 36));
