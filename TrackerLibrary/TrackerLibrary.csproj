@@ -50,6 +50,10 @@
     <Compile Include="PrizeModel.cs" />
     <Compile Include="MatchupModel.cs" />
     <Compile Include="MatchupEntryModel.cs" />
+    <Compile Include="IDataConnection.cs" />
+    <Compile Include="GlobalConfig.cs" />
+    <Compile Include="SqlConnector.cs" />
+    <Compile Include="TextConnector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

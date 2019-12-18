@@ -4,43 +4,42 @@ namespace TrackerDesktopUI
 {
     public partial class CreateTeam : Gtk.Window
     {
+        // Containers
+        readonly HBox hBox = new HBox(false, 0);
+
+        readonly Fixed @fixed = new Fixed();
+
+        // Widgets
+        readonly Button btnTeamAddMember = new Button("Add Member");
+        readonly Button btnTeamCreateNewMember = new Button("Create Member");
+        readonly Button btnTeamCreateTeam = new Button("Create Team");
+        readonly Button btnTeamDelete = new Button("Delete Selected");
+
+        readonly ComboBoxEntry cmbTeamSelectMember = new ComboBoxEntry(
+            new string[] { "Member 1", "Member 2", "etc..." });
+
+        readonly Entry entryTeamName = new Entry();
+        readonly Entry entryTeamFirst = new Entry();
+        readonly Entry entryTeamLast = new Entry();
+        readonly Entry entryTeamEmail = new Entry();
+        readonly Entry entryTeamCellphone = new Entry();
+
+        readonly Label lblTeamMain = new Label("Create Team");
+        readonly Label lblTeamName = new Label("Team Name");
+        readonly Label lblTeamSelectMember = new Label("Select Team Member");
+        readonly Label lblTeamAddNewMember = new Label("Add New Member");
+        readonly Label lblTeamFirst = new Label("First Name");
+        readonly Label lblTeamLast = new Label("Last Name");
+        readonly Label lblTeamEmail = new Label("Email");
+        readonly Label lblTeamCellphone = new Label("Cellphone");
+
+        readonly ScrolledWindow scrolledPlayersList =
+            GeneralMethods.CreateListView("Players",
+            new string[] { "Member 1", "Member 2", "etc..." });
+        
         public CreateTeam() :
                 base(Gtk.WindowType.Toplevel)
         {
-            // Containers
-            HBox hBox = new HBox(false, 0);
-
-            Fixed @fixed = new Fixed();
-
-            // Widgets
-            Button btnTeamAddMember = new Button("Add Member");
-            Button btnTeamCreateNewMember = new Button("Create Member");
-            Button btnTeamCreateTeam = new Button("Create Team");
-            Button btnTeamDelete = new Button("Delete Selected");
-
-            ComboBoxEntry cmbTeamSelectMember = new ComboBoxEntry(
-                new string[] { "Member 1", "Member 2", "etc..." });
-
-            Entry entryTeamName = new Entry();
-            Entry entryTeamFirst = new Entry();
-            Entry entryTeamLast = new Entry();
-            Entry entryTeamEmail = new Entry();
-            Entry entryTeamCellphone = new Entry();
-
-            Label lblTeamMain = new Label("Create Team");
-            Label lblTeamName = new Label("Team Name");
-            Label lblTeamSelectMember = new Label("Select Team Member");
-            Label lblTeamAddNewMember = new Label("Add New Member");
-            Label lblTeamFirst = new Label("First Name");
-            Label lblTeamLast = new Label("Last Name");
-            Label lblTeamEmail = new Label("Email");
-            Label lblTeamCellphone = new Label("Cellphone");
-
-            ScrolledWindow scrolledPlayersList =
-                GeneralMethods.CreateListView("Players",
-                new string[] { "Member 1", "Member 2", "etc..." });
-            scrolledPlayersList.SetSizeRequest(200, 320);
-
             // Populating the fixed container
             @fixed.Put(lblTeamMain, 10, 10);
 
@@ -73,13 +72,14 @@ namespace TrackerDesktopUI
 
             @fixed.Put(btnTeamCreateTeam, 210, 440);
 
-            // Assigning widget colors and fonts
+            // Assigning widget colors and fonts and sizes
             byte[] RGBlabels = { 255, 255, 255};
             GeneralMethods.LabelColoursFonts(@fixed, RGBlabels);
             GeneralMethods.LabelColoursFonts(@fixed, RGBlabels,
                 new Label[] { lblTeamMain });
             lblTeamAddNewMember.ModifyFont(Pango.FontDescription.FromString(
                 "Source Code Pro Regular 16"));
+            scrolledPlayersList.SetSizeRequest(200, 320);
 
             // Window setup
             ModifyBg(StateType.Normal, new Gdk.Color(36, 36, 36));

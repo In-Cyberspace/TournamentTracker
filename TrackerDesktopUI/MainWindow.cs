@@ -3,26 +3,26 @@ using TrackerDesktopUI;
 
 public partial class MainWindow : Gtk.Window
 {
-    Gdk.Color winBgColour, lblFgColour;
+    // Containers
+    readonly Fixed @fixed = new Fixed();
 
+    readonly HBox hBox = new HBox(false, 0);
+
+    // Widgets
+    readonly Button btnDashboardLoadTournament = new Button("Load Tournament");
+    readonly Button btnDashboardCreateTournament =
+        new Button("Create Tournament");
+    
+    readonly ComboBoxEntry cmbDashboardLoadExisting = new ComboBoxEntry(
+        new string[] { "Tournament 1", "Tournament 2", "etc..." });
+
+    readonly Label lblDashboardMain = new Label("Tournament Dashboard");
+    readonly Label lblDashboardLoadExisting =
+        new Label("Load Existing Tournament");
+    
     public MainWindow() :
             base(Gtk.WindowType.Toplevel)
     {
-        // Containers
-        Fixed @fixed = new Fixed();
-
-        HBox hBox = new HBox(false, 0);
-
-        // Widgets
-        Button btnDashboardLoadTournament = new Button("Load Tournament");
-        Button btnDashboardCreateTournament = new Button("Create Tournament");
-
-        ComboBoxEntry cmbDashboardLoadExisting = new ComboBoxEntry(
-            new string[] { "Tournament 1", "Tournament 2", "etc..." });
-
-        Label lblDashboardMain = new Label("Tournament Dashboard");
-        Label lblDashboardLoadExisting = new Label("Load Existing Tournament");
-
         // Populating the fixed container
         @fixed.Put(lblDashboardMain, 10, 10);
 

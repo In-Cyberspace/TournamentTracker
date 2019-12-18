@@ -4,31 +4,31 @@ namespace TrackerDesktopUI
 {
     public partial class CreatePrize : Gtk.Window
     {
+        // Containers
+        readonly Fixed @fixed = new Fixed();
+
+        readonly HBox hBox = new HBox(false, 0);
+
+        // Widgets
+        readonly Button btnPrizeCreate = new Button("Create Prize");
+
+        readonly Entry entryPrizePlaceNumber = new Entry();
+        readonly Entry entryPrizePlaceName = new Entry();
+        readonly Entry entryPrizePlaceAmount = new Entry();
+        readonly Entry entryPrizePercentage = new Entry();
+
+        readonly Label lblPrizeMain = new Label("Create Prize");
+        readonly Label lblPrizePlaceNumber = new Label("Place Number");
+        readonly Label lblPrizePlaceName = new Label("Place Name");
+        readonly Label lblPrizePlaceAmount = new Label("Place Amount");
+        readonly Label lblOR = new Label("- OR -");
+        readonly Label lblPrizePercentage = new Label("Prize Percentage");
+
         public CreatePrize() :
                 base(Gtk.WindowType.Toplevel)
         {
-            // Containers
-            Fixed @fixed = new Fixed();
-
-            HBox hBox = new HBox(false, 0);
-
-            // Widgets
-            Button btnPrizeCreate = new Button("Create Prize");
-
-            Entry entryPrizePlaceNumber = new Entry();
-            Entry entryPrizePlaceName = new Entry();
-            Entry entryPrizePlaceAmount = new Entry();
-            Entry entryPrizePercentage = new Entry();
-
-            Label lblPrzeMain = new Label("Create Prize");
-            Label lblPrizePlaceNumber = new Label("Place Number");
-            Label lblPrizePlaceName = new Label("Place Name");
-            Label lblPrizePlaceAmount = new Label("Place Amount");
-            Label lblOR = new Label("- OR -");
-            Label lblPrizePercentage = new Label("Prize Percentage");
-
             // Populating the fixed container
-            @fixed.Put(lblPrzeMain, 10, 10);
+            @fixed.Put(lblPrizeMain, 10, 10);
 
             @fixed.Put(lblPrizePlaceNumber, 40, 60);
             @fixed.Put(entryPrizePlaceNumber, 200, 60);
@@ -48,7 +48,7 @@ namespace TrackerDesktopUI
 
             // Assigning widget colora and fonts
             GeneralMethods.LabelColoursFonts(@fixed,
-                new byte[] { 255, 255, 255 }, new Label[] { lblPrzeMain });
+                new byte[] { 255, 255, 255 }, new Label[] { lblPrizeMain });
 
             // Window setup
             ModifyBg(StateType.Normal, new Gdk.Color(36, 36, 36));

@@ -1,5 +1,5 @@
 
 
 
-SELECT *
-FROM TestPerson
+SELECT top 1000 *
+FROM TestPerson;

@@ -4,37 +4,38 @@ namespace TrackerDesktopUI
 {
     public partial class TournamentViewer : Gtk.Window
     {
+        // Declaring and initializing containers
+        readonly Fixed @fixed = new Fixed();
+
+        readonly HBox hBox = new HBox(false, 0);
+
+        // Declaring and initializing widgets
+        readonly Button btnScore = new Button("Score");
+
+        readonly CheckButton cbtnRounds = new CheckButton("Unplayed Only");
+
+        readonly ComboBoxEntry cmbRounds = new ComboBoxEntry(new string[] {"Arch",
+                "macOS", "Manjaro"});                                               // place holder for rounds dropdow
+
+        readonly Entry entryScoreOne = new Entry();
+        readonly Entry entryViewerScoreTwo = new Entry();
+
+        readonly Label lblViewerMain = new Label("Tournament:");
+        readonly Label lblViewerRound = new Label("Round");
+        readonly Label lblViewerScoreOne = new Label("Score");
+        readonly Label lblViewerScoreTwo = new Label("Score");
+        readonly Label lblViewerTournamentName = new Label("<none>");
+        readonly Label lblViewerTeamOne = new Label("<team one>");
+        readonly Label lblViewerTeamTwo = new Label("<team two>");
+        readonly Label lblViewerVersus = new Label("VS");
+
+        readonly ScrolledWindow roundsList = GeneralMethods.CreateListView("Round" +
+            " matchups", new string[] { "Round 1", "Round 2", "Round 3",
+                    "Round 4", "etc..." });                                         // place holder
+
         public TournamentViewer() :
                 base(Gtk.WindowType.Toplevel)
         {
-            // Declaring and initializing containers
-            Fixed @fixed = new Fixed();
-
-            HBox hBox = new HBox(false, 0);
-
-            // Declaring and initializing widgets
-            Button btnScore = new Button("Score");
-
-            CheckButton cbtnRounds = new CheckButton("Unplayed Only");
-
-            ComboBoxEntry cmbRounds = new ComboBoxEntry(new string[] {"Arch",
-                "macOS", "Manjaro"});                                               // place holder for rounds dropdow
-
-            Entry entryScoreOne = new Entry();
-            Entry entryViewerScoreTwo = new Entry();
-
-            Label lblViewerMain = new Label("Tournament:");
-            Label lblViewerRound = new Label("Round");
-            Label lblViewerScoreOne = new Label("Score");
-            Label lblViewerScoreTwo = new Label("Score");
-            Label lblViewerTournamentName = new Label("<none>");
-            Label lblViewerTeamOne = new Label("<team one>");
-            Label lblViewerTeamTwo = new Label("<team two>");
-            Label lblViewerVersus = new Label("VS");
-
-            ScrolledWindow roundsList = GeneralMethods.CreateListView("Round" +
-                " matchups", new string[] { "Round 1", "Round 2", "Round 3",
-                    "Round 4", "etc..." });                                         // place holder
             roundsList.SetSizeRequest(250, 400);
 
             // Populating the left half of the fixed container
