@@ -14,8 +14,8 @@ namespace TrackerDesktopUI
 
         readonly CheckButton cbtnRounds = new CheckButton("Unplayed Only");
 
-        readonly ComboBoxEntry cmbRounds = new ComboBoxEntry(new string[] {"Arch",
-                "macOS", "Manjaro"});                                               // place holder for rounds dropdow
+        readonly ComboBoxEntry cmbRounds =
+            new ComboBoxEntry(new string[] {"Arch", "macOS", "Manjaro"});  // place holder for rounds dropdow
 
         readonly Entry entryScoreOne = new Entry();
         readonly Entry entryViewerScoreTwo = new Entry();
@@ -29,9 +29,9 @@ namespace TrackerDesktopUI
         readonly Label lblViewerTeamTwo = new Label("<team two>");
         readonly Label lblViewerVersus = new Label("VS");
 
-        readonly ScrolledWindow roundsList = GeneralMethods.CreateListView("Round" +
-            " matchups", new string[] { "Round 1", "Round 2", "Round 3",
-                    "Round 4", "etc..." });                                         // place holder
+        readonly ScrolledWindow roundsList = GeneralMethods.CreateListView(
+            "Round matchups", new string[] { "Round 1", "Round 2", "Round 3",
+                "Round 4", "etc..." });      // place holder
 
         public TournamentViewer() :
                 base(Gtk.WindowType.Toplevel)
@@ -77,7 +77,7 @@ namespace TrackerDesktopUI
 
             Add(hBox);
 
-            //ShowAll();
+            ShowAll();
             // -----
 
             // Build();

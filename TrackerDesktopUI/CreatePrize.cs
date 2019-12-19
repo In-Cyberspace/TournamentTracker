@@ -1,4 +1,6 @@
 ﻿using Gtk;
+using System;
+using TrackerLibrary;
 
 namespace TrackerDesktopUI
 {
@@ -59,6 +61,51 @@ namespace TrackerDesktopUI
             hBox.Add(@fixed);
 
             Add(hBox);
+
+            ShowAll();
+        }
+
+        private void OnClick(object sender, EventArgs args)
+        {
+            if (ValidateForm())
+            {
+                PrizeModel model = new PrizeModel(
+                    entryPrizePlaceName.Text,
+                    entryPrizePlaceNumber.Text,
+                    entryPrizePlaceAmount.Text,
+                    entryPrizePercentage.Text);
+
+                foreach (IDataConnection db in GlobalConfig.Connections)
+                {
+                    db.CreatePrize(model);
+                }
+            }
+        }
+
+        private bool ValidateForm()
+        {
+            bool output = true;
+
+            decimal prizeAmount = 0;
+            double prizePercentage = 0;
+
+            if (!int.TryParse(entryPrizePlaceNumber.Text, out int placenumber))
+            {
+                output = false;
+            }
+
+            output &= placenumber >= 1;
+
+            output &= entryPrizePlaceName.Text.Length != 0;
+
+            output &= (decimal.TryParse(entryPrizePlaceAmount.Text, out _) &&
+                double.TryParse(entryPrizePercentage.Text, out _));
+
+            output &= (prizeAmount > 0 || prizePercentage > 0);
+
+            output &= (prizePercentage >= 0 && prizePercentage <= 100);
+
+            return output;
         }
     }
 }

@@ -90,6 +90,8 @@ namespace TrackerDesktopUI
             hBox.Add(@fixed);
 
             Add(hBox);
+
+            ShowAll();
         }
     }
 }

@@ -67,5 +67,11 @@
     <Compile Include="CreatePrize.cs" />
     <Compile Include="gtk-gui\TrackerDesktopUI.CreatePrize.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TrackerLibrary\TrackerLibrary.csproj">
+      <Project>{6F190130-5974-4E52-8945-3A7056982CE9}</Project>
+      <Name>TrackerLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

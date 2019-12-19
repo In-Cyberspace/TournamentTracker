@@ -45,6 +45,8 @@ public partial class MainWindow : Gtk.Window
         hBox.Add(@fixed);
 
         Add(hBox);
+
+        ShowAll();
     }
 
     protected void OnDeleteEvent(object sender, DeleteEventArgs a)
